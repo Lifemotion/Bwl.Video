@@ -14,4 +14,5 @@
     ReadOnly Property CanCapture As Boolean
     ReadOnly Property FrameNumber As Integer
     ReadOnly Property IsWorking As Boolean
+    ReadOnly Property SyncObject As Object
 End Interface

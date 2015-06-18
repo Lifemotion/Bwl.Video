@@ -9,8 +9,7 @@ Public Class TestApp
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim ff As New FolderCapture("0")
-        Dim test As New VideoSourceWindow(ff)
-        test.Show()
+        VideoCaptureTestTool.Create(ff).Show()
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click

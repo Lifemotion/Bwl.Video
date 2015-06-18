@@ -103,4 +103,10 @@
             Return _fileList.Length
         End Get
     End Property
+
+    Public ReadOnly Property SyncObject As Object Implements IVideoCapture.SyncObject
+        Get
+            Return Me
+        End Get
+    End Property
 End Class

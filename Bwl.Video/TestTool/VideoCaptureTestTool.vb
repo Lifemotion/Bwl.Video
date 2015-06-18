@@ -1,4 +1,4 @@
-﻿Public Class VideoSourceWindow
+﻿Public Class VideoCaptureTestTool
     Private _source As IVideoCapture
     Private _id As String
 
@@ -60,6 +60,11 @@
 
     End Sub
 
+    Public Shared Function Create(capture As IVideoCapture) As VideoCaptureTestTool
+        Dim tt As New VideoCaptureTestTool(capture)
+        Return tt
+    End Function
+
     Private Sub stateTimer_Tick(sender As Object, e As EventArgs) Handles stateTimer.Tick
         Dim statesList As String() = {"CanCapture: " + _source.CanCapture.ToString,
                                   "Working:" + _source.IsWorking.ToString,
@@ -71,22 +76,35 @@
         states.Items.AddRange(statesList)
     End Sub
 
-    Private Sub buttonTestFramerate_Click(sender As Object, e As EventArgs) Handles buttonTestFramerate.Click
+    Private Function TestFrameRate(source As IVideoCapture, timelimit As Single, picturebox As PictureBox) As Single
         Dim count As Integer
         Dim time = Now
-        Do While (Now - time).TotalSeconds < 2.0 And _source.IsWorking
-            Do While _source.CanCapture = False
+        Do While (Now - time).TotalSeconds < timelimit And source.IsWorking
+            Do While source.CanCapture = False
                 Threading.Thread.Sleep(1)
             Loop
-            _source.Capture()
+            source.Capture()
+            If picturebox IsNot Nothing Then
+                SyncLock _source.SyncObject
+                    picturebox.Image = _source.GetBitmap
+                    picturebox.Refresh()
+                    'Application.DoEvents 
+                End SyncLock
+            End If
             count += 1
         Loop
         Dim secs = (Now - time).TotalSeconds
         Dim fps = count / secs
+        Return fps
+    End Function
+
+    Private Sub buttonTestFramerate_Click(sender As Object, e As EventArgs) Handles buttonTestFramerate.Click
+        Dim fps = TestFrameRate(_source, 2, Nothing)
         MsgBox("FPS: " + fps.ToString("0.0"))
     End Sub
 
     Private Sub buttonTestFramerateWithOutput_Click(sender As Object, e As EventArgs) Handles buttonTestFramerateWithOutput.Click
-
+        Dim fps = TestFrameRate(_source, 2, pictureboxFrameView)
+        MsgBox("FPS: " + fps.ToString("0.0"))
     End Sub
 End Class

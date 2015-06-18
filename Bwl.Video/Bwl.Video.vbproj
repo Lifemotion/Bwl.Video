@@ -61,14 +61,16 @@
   <ItemGroup>
     <Compile Include="Common\IVideoCapture.vb" />
     <Compile Include="Common\IVideoCaptureFactory.vb" />
+    <Compile Include="Common\IVideoCaptureSimple.vb" />
     <Compile Include="Common\IVideoWriter.vb" />
+    <Compile Include="Common\VideoSourceFactoryManager.vb" />
     <Compile Include="FilesFolder\FolderCapture.vb" />
     <Compile Include="FilesFolder\FolderWriter.vb" />
     <Compile Include="FilesFolder\JpegSaver.vb" />
-    <Compile Include="Helper\VideoSourceWindow.Designer.vb">
-      <DependentUpon>VideoSourceWindow.vb</DependentUpon>
+    <Compile Include="TestTool\VideoCaptureTestTool.Designer.vb">
+      <DependentUpon>VideoCaptureTestTool.vb</DependentUpon>
     </Compile>
-    <Compile Include="Helper\VideoSourceWindow.vb">
+    <Compile Include="TestTool\VideoCaptureTestTool.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -88,8 +90,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Helper\VideoSourceWindow.resx">
-      <DependentUpon>VideoSourceWindow.vb</DependentUpon>
+    <EmbeddedResource Include="TestTool\VideoCaptureTestTool.resx">
+      <DependentUpon>VideoCaptureTestTool.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
