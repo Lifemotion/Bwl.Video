@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bwl.Video", "Bwl.Video\Bwl.Video.vbproj", "{E7AF7A2A-C9E5-4B2D-9338-4399F1B87845}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Bwl.Video.Test", "Bwl.Video.Test\Bwl.Video.Test.vbproj", "{077D09BE-0FE5-4831-9AF9-A4779A244FBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E7AF7A2A-C9E5-4B2D-9338-4399F1B87845}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E7AF7A2A-C9E5-4B2D-9338-4399F1B87845}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E7AF7A2A-C9E5-4B2D-9338-4399F1B87845}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E7AF7A2A-C9E5-4B2D-9338-4399F1B87845}.Release|Any CPU.Build.0 = Release|Any CPU
+		{077D09BE-0FE5-4831-9AF9-A4779A244FBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{077D09BE-0FE5-4831-9AF9-A4779A244FBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{077D09BE-0FE5-4831-9AF9-A4779A244FBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{077D09BE-0FE5-4831-9AF9-A4779A244FBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
