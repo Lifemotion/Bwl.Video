@@ -15,4 +15,5 @@
     ReadOnly Property FrameNumber As Integer
     ReadOnly Property IsWorking As Boolean
     ReadOnly Property SyncObject As Object
+    Event FrameCaptured(source As IVideoCapture)
 End Interface

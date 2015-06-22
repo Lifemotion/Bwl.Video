@@ -10,6 +10,8 @@
         _id = id
     End Sub
 
+    Public Property Repeat As Boolean
+
     Public ReadOnly Property CanCapture As Boolean Implements IVideoCapture.CanCapture
         Get
             SyncLock Me
@@ -23,6 +25,8 @@
         SyncLock Me
             _currentFrame = Bitmap.FromFile(_fileList(_position))
             _position += 1
+            If Repeat And _fileList.Length <= _position Then _position = 0
+            RaiseEvent FrameCaptured(Me)
         End SyncLock
     End Sub
 
@@ -109,4 +113,6 @@
             Return Me
         End Get
     End Property
+
+    Public Event FrameCaptured(source As IVideoCapture) Implements IVideoCapture.FrameCaptured
 End Class

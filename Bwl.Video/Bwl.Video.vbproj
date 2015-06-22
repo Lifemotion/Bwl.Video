@@ -88,6 +88,12 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="TestTool\VideoWriterTestTool.Designer.vb">
+      <DependentUpon>VideoWriterTestTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="TestTool\VideoWriterTestTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestTool\VideoCaptureTestTool.resx">
@@ -98,6 +104,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestTool\VideoWriterTestTool.resx">
+      <DependentUpon>VideoWriterTestTool.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
