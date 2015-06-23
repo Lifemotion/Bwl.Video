@@ -7,7 +7,7 @@ Public Class JpegSaver
     Private _quality As Integer
 
     Sub New()
-        Quality = 80
+        Quality = 90
     End Sub
 
     Public Property Quality As Integer

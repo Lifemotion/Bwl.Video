@@ -1,5 +1,11 @@
 ﻿Public Class FolderCapture
     Implements IVideoCapture
+
+    Private Class FileEntry
+        Public filename As String
+        Public filedate As DateTime
+    End Class
+
     Private _fileList As String() = {}
     Private _position As Integer
     Private _currentFrame As Bitmap
@@ -10,7 +16,7 @@
         _id = id
     End Sub
 
-    Public Property Repeat As Boolean
+    Public Property Repeat As Boolean = True
 
     Public ReadOnly Property CanCapture As Boolean Implements IVideoCapture.CanCapture
         Get

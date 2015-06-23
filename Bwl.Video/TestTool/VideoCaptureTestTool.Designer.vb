@@ -159,7 +159,7 @@ Partial Class VideoCaptureTestTool
         Me.buttonTestFramerateWithOutput.Text = "Тест частоты кадров c отображением"
         Me.buttonTestFramerateWithOutput.UseVisualStyleBackColor = True
         '
-        'VideoSourceWindow
+        'VideoCaptureTestTool
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -177,7 +177,7 @@ Partial Class VideoCaptureTestTool
         Me.Controls.Add(Me.bStart)
         Me.Controls.Add(Me.pictureboxFrameView)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.Name = "VideoSourceWindow"
+        Me.Name = "VideoCaptureTestTool"
         Me.Text = "Тест видеозахвата"
         CType(Me.pictureboxFrameView, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
