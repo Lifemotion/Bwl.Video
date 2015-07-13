@@ -59,7 +59,7 @@
 
     Public Function GetBitmapCopy(width As Integer, height As Integer) As Bitmap Implements IVideoCapture.GetBitmapCopy
         SyncLock Me
-            Return New Bitmap(_currentFrame, width, height)
+            Return If(_currentFrame IsNot Nothing, New Bitmap(_currentFrame, width, height), New Bitmap(width, height, Imaging.PixelFormat.Format24bppRgb))
         End SyncLock
     End Function
 
