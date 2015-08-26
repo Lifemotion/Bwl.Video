@@ -8,17 +8,17 @@ Imports System.Runtime.InteropServices
 
 ' Проверьте значения атрибутов сборки
 
-<Assembly: AssemblyTitle("Bwl.Video.Test")> 
+<Assembly: AssemblyTitle("Bwl.Video")> 
 <Assembly: AssemblyDescription("8e3fae0 Исправление Артема.")>
 <Assembly: AssemblyCompany("")> 
-<Assembly: AssemblyProduct("Bwl.Video.Test")> 
+<Assembly: AssemblyProduct("Bwl.Video")> 
 <Assembly: AssemblyCopyright("Copyright ©  2015")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
 
 'Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-<Assembly: Guid("46fa544d-02b2-4e41-af4e-52594d9ce82d")> 
+<Assembly: Guid("96e469e3-3040-428a-ad51-28e897ca32d1")>
 
 ' Сведения о версии сборки состоят из следующих четырех значений:
 '
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.2015.0815.1545")>
-<Assembly: AssemblyFileVersion("1.2015.0815.1545")>
+<Assembly: AssemblyVersion("1.2015.0815.1526")>
+<Assembly: AssemblyFileVersion("1.2015.0815.1526")>

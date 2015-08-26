@@ -4,12 +4,13 @@ Imports System.Windows.Forms
 Public Class TestApp
     Dim fw As New FolderWriter("Test")
     Private Sub TestApp_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
         VideoWriterTestTool.Create(fw).Show()
     End Sub
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim ff As New FolderCapture("0")
+        ff.Address = "example"
+        ff.Parameters = "testparam"
         VideoCaptureTestTool.Create(ff).Show()
     End Sub
 

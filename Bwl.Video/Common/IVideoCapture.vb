@@ -12,7 +12,7 @@
     ReadOnly Property MaxFrameNumber As Integer
     ReadOnly Property ID As String
     ReadOnly Property CanCapture As Boolean
-    ReadOnly Property FrameNumber As Integer
+    Property FrameNumber As Integer
     ReadOnly Property IsWorking As Boolean
     ReadOnly Property SyncObject As Object
     Event FrameCaptured(source As IVideoCapture)

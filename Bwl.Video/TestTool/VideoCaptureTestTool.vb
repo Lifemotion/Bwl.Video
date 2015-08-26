@@ -66,6 +66,16 @@
     End Function
 
     Private Sub stateTimer_Tick(sender As Object, e As EventArgs) Handles stateTimer.Tick
+        Static lastAddress As String
+        Static lastParameters As String
+        If lastAddress <> _source.Address Then
+            comboboxAddress.Text = _source.Address
+            lastAddress = _source.Address
+        End If
+        If lastParameters <> _source.Parameters Then
+            comboboxParameters.Text = _source.Parameters
+            lastParameters = _source.Parameters
+        End If
         Dim statesList As String() = {"CanCapture: " + _source.CanCapture.ToString,
                                   "Working:" + _source.IsWorking.ToString,
                                   "ID:" + _source.ID.ToString,

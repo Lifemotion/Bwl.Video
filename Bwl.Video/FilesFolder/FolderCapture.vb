@@ -26,11 +26,13 @@
         End Get
     End Property
 
+    Public Property NextFrameAfrerCapture As Boolean = True
+
     Public Sub Capture() Implements IVideoCapture.Capture
         If Not CanCapture Then Throw New Exception("No more frames. Use Open to restart.")
         SyncLock Me
             _currentFrame = Bitmap.FromFile(_fileList(_position))
-            _position += 1
+            If NextFrameAfrerCapture Then _position += 1
             If Repeat And _fileList.Length <= _position Then _position = 0
             RaiseEvent FrameCaptured(Me)
         End SyncLock
@@ -41,10 +43,15 @@
         _position = 0
     End Sub
 
-    Public ReadOnly Property FrameNumber As Integer Implements IVideoCapture.FrameNumber
+    Public Property FrameNumber As Integer Implements IVideoCapture.FrameNumber
         Get
             Return _position
         End Get
+        Set(value As Integer)
+            If value < 0 Then value = 0
+            If value > _fileList.Length - 1 Then value = _fileList.Length - 1
+            _position = value
+        End Set
     End Property
 
     Public Function GetBitmap() As Bitmap Implements IVideoCapture.GetBitmap
@@ -79,8 +86,13 @@
         SyncLock Me
             If IO.Directory.Exists(Address) = False Then Throw New Exception("Path " + Address + " not exists")
             _path = Address
-            Dim files = IO.Directory.GetFiles(_path, "*.jpg")
-            _fileList = files
+            Dim files1 = IO.Directory.GetFiles(_path, "*.jpg")
+            Dim files2 = IO.Directory.GetFiles(_path, "*.png")
+            Dim list As New List(Of String)
+            list.AddRange(files1)
+            list.AddRange(files2)
+
+            _fileList = list.ToArray
             _position = 0
         End SyncLock
     End Sub
