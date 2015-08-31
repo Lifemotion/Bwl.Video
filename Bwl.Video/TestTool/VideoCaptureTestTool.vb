@@ -81,7 +81,9 @@
                                   "ID:" + _source.ID.ToString,
                                   "MaxFrameRate:" + _source.MaxFrameRate.ToString,
                                   "FrameNumber:" + _source.FrameNumber.ToString,
-                                  "MaxFrameNumber:" + _source.MaxFrameNumber.ToString}
+                                  "MaxFrameNumber:" + _source.MaxFrameNumber.ToString,
+                                  "CaptureTime:" + _source.CaptureTime.ToShortDateString,
+                                  "CaptureTime:" + _source.CaptureTime.ToLongTimeString}
         states.Items.Clear()
         states.Items.AddRange(statesList)
     End Sub

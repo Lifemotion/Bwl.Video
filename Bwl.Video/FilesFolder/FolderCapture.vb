@@ -9,6 +9,7 @@
     Private _fileList As String() = {}
     Private _position As Integer
     Private _currentFrame As Bitmap
+    Private _captureTime As DateTime = DateTime.MinValue
     Private _id As String
     Private _path As String
 
@@ -21,19 +22,27 @@
     Public ReadOnly Property CanCapture As Boolean Implements IVideoCapture.CanCapture
         Get
             SyncLock Me
-                If _fileList.Length > _position Then Return True Else Return False
+                If FrameNumber <= _fileList.Length Then Return True Else Return False
             End SyncLock
         End Get
     End Property
 
-    Public Property NextFrameAfrerCapture As Boolean = True
+    Public Property NextFrameAfterCapture As Boolean = True
 
     Public Sub Capture() Implements IVideoCapture.Capture
         If Not CanCapture Then Throw New Exception("No more frames. Use Open to restart.")
         SyncLock Me
-            _currentFrame = Bitmap.FromFile(_fileList(_position))
-            If NextFrameAfrerCapture Then _position += 1
+            Dim file = _fileList(_position)
+            _currentFrame = Bitmap.FromFile(file)
+            If NextFrameAfterCapture Then _position += 1
             If Repeat And _fileList.Length <= _position Then _position = 0
+            Try
+                Dim captureTime = New DateTime(Convert.ToInt64((file.Replace(".jpg", String.Empty))))
+                If captureTime <= _captureTime Then captureTime = Now 'Обратный ход времени не допускается!
+                _captureTime = captureTime
+            Catch ex As Exception
+                _captureTime = Now
+            End Try
             RaiseEvent FrameCaptured(Me)
         End SyncLock
     End Sub
@@ -45,12 +54,12 @@
 
     Public Property FrameNumber As Integer Implements IVideoCapture.FrameNumber
         Get
-            Return _position
+            Return _position + 1
         End Get
         Set(value As Integer)
-            If value < 0 Then value = 0
-            If value > _fileList.Length - 1 Then value = _fileList.Length - 1
-            _position = value
+            If value < 1 Then value = 1
+            If value > _fileList.Length Then value = _fileList.Length
+            _position = value - 1
         End Set
     End Property
 
@@ -123,6 +132,12 @@
     Public ReadOnly Property MaxFrameNumber As Integer Implements IVideoCapture.MaxFrameNumber
         Get
             Return _fileList.Length
+        End Get
+    End Property
+
+    Public ReadOnly Property CaptureTime As DateTime Implements IVideoCapture.CaptureTime
+        Get
+            Return _captureTime
         End Get
     End Property
 

@@ -9,7 +9,7 @@ Imports System.Runtime.InteropServices
 ' Проверьте значения атрибутов сборки
 
 <Assembly: AssemblyTitle("Bwl.Video.Test")> 
-<Assembly: AssemblyDescription("8e3fae0 Исправление Артема.")>
+<Assembly: AssemblyDescription("f8e3300 Доработки.")>
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("Bwl.Video.Test")> 
 <Assembly: AssemblyCopyright("Copyright ©  2015")> 
@@ -31,5 +31,5 @@ Imports System.Runtime.InteropServices
 ' используя "*", как показано ниже:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("1.2015.0815.1545")>
-<Assembly: AssemblyFileVersion("1.2015.0815.1545")>
+<Assembly: AssemblyVersion("1.2015.0831.1105")>
+<Assembly: AssemblyFileVersion("1.2015.0831.1105")>

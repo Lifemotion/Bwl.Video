@@ -49,7 +49,7 @@ Partial Class VideoCaptureTestTool
         Me.pictureboxFrameView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pictureboxFrameView.Location = New System.Drawing.Point(139, 69)
         Me.pictureboxFrameView.Name = "pictureboxFrameView"
-        Me.pictureboxFrameView.Size = New System.Drawing.Size(431, 360)
+        Me.pictureboxFrameView.Size = New System.Drawing.Size(431, 377)
         Me.pictureboxFrameView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pictureboxFrameView.TabIndex = 0
         Me.pictureboxFrameView.TabStop = False
@@ -102,7 +102,7 @@ Partial Class VideoCaptureTestTool
         '
         'buttonTestFramerate
         '
-        Me.buttonTestFramerate.Location = New System.Drawing.Point(6, 329)
+        Me.buttonTestFramerate.Location = New System.Drawing.Point(6, 346)
         Me.buttonTestFramerate.Name = "buttonTestFramerate"
         Me.buttonTestFramerate.Size = New System.Drawing.Size(127, 47)
         Me.buttonTestFramerate.TabIndex = 8
@@ -142,7 +142,7 @@ Partial Class VideoCaptureTestTool
         Me.states.FormattingEnabled = True
         Me.states.Location = New System.Drawing.Point(6, 213)
         Me.states.Name = "states"
-        Me.states.Size = New System.Drawing.Size(127, 95)
+        Me.states.Size = New System.Drawing.Size(127, 121)
         Me.states.TabIndex = 12
         '
         'stateTimer
@@ -152,7 +152,7 @@ Partial Class VideoCaptureTestTool
         '
         'buttonTestFramerateWithOutput
         '
-        Me.buttonTestFramerateWithOutput.Location = New System.Drawing.Point(6, 382)
+        Me.buttonTestFramerateWithOutput.Location = New System.Drawing.Point(6, 399)
         Me.buttonTestFramerateWithOutput.Name = "buttonTestFramerateWithOutput"
         Me.buttonTestFramerateWithOutput.Size = New System.Drawing.Size(127, 47)
         Me.buttonTestFramerateWithOutput.TabIndex = 13
@@ -163,7 +163,7 @@ Partial Class VideoCaptureTestTool
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(575, 434)
+        Me.ClientSize = New System.Drawing.Size(575, 451)
         Me.Controls.Add(Me.buttonTestFramerateWithOutput)
         Me.Controls.Add(Me.states)
         Me.Controls.Add(Me.Label2)
