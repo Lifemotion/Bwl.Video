@@ -37,7 +37,8 @@
             If NextFrameAfterCapture Then _position += 1
             If Repeat And _fileList.Length <= _position Then _position = 0
             Try
-                Dim captureTime = New DateTime(Convert.ToInt64((file.Replace(".jpg", String.Empty))))
+                Dim name = IO.Path.GetFileNameWithoutExtension(file)
+                Dim captureTime = New DateTime(Convert.ToInt64(name))
                 If captureTime <= _captureTime Then captureTime = Now 'Обратный ход времени не допускается!
                 _captureTime = captureTime
             Catch ex As Exception
