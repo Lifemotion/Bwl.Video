@@ -1,0 +1,31 @@
+   Copyright 2015 Igor Koshelev (igor@lifemotion.ru)
+
+   Source code of Bwl.Video.LibVLC is licensed under Apache License.
+   
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+   
+   Bwl.Video.LibVLC itself is licensed under Apache License 2.0.
+
+   Bwl.Video.LibVLC linked with LibVLC.NET (Bwl.Video.LibVLC\libvlc.net\*.*)
+   licensed under GNU Lesser General Public License, version 2.1.
+   
+   Source of LibVLC.NET is available at Bwl.Video.LibVLC\libvlc.net\source.zip
+   or from official website https://libvlcnet.codeplex.com/
+
+   LibVLC.NET uses libVLC from VideoLAN, https://www.videolan.org/vlc/libvlc.html
+
+   VideoLAN, VLC, VLC media player and x264 are trademarks internationally registered by the VideoLAN non-profit organization.
+
+   VideoLAN software is licensed under various open-source licenses: use and distribution are defined by each software license.
+
+   Additional information, binaries and sources of VLC can be found at https://www.videolan.org/vlc/

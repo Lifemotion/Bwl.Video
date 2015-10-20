@@ -1,0 +1,22 @@
+Bwl.Video.LibVLC
+Igor Koshelev (igor@lifemotion.ru)
+
+Video Source based on libVLC and LibVLC.NET.
+
+To work properly, VideoLAN VLC x86 must be installed on target Windows System.
+
+Bwl.Video.LibVLC itself is licensed under Apache License 2.0.
+
+Bwl.Video.LibVLC linked with LibVLC.NET (Bwl.Video.LibVLC\libvlc.net\*.*)
+licensed under GNU Lesser General Public License, version 2.1.
+   
+Source of LibVLC.NET is available at Bwl.Video.LibVLC\libvlc.net\source.zip
+or from official website https://libvlcnet.codeplex.com/
+
+LibVLC.NET uses libVLC from VideoLAN, https://www.videolan.org/vlc/libvlc.html
+
+VideoLAN, VLC, VLC media player and x264 are trademarks internationally registered by the VideoLAN non-profit organization.
+
+VideoLAN software is licensed under various open-source licenses: use and distribution are defined by each software license.
+
+Additional information, binaries and sources of VLC can be found at https://www.videolan.org/vlc/

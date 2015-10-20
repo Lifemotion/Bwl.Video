@@ -1,6 +1,6 @@
    Copyright 2015 Igor Koshelev (igor@lifemotion.ru)
 
-   All files in this repository is licensed under this license.
+   All files in Bwl.Video\*.* and Bwl.Video.Test\*.* is licensed under this license.
    
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
@@ -13,3 +13,5 @@
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
+   
+   License for Bwl.Video.LibVLC\*.* can be found in Bwl.Video.LibVLC\LICENSE
