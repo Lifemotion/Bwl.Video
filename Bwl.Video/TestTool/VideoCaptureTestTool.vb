@@ -149,10 +149,11 @@ Public Class VideoCaptureTestTool
         MsgBox("FPS: " + fps.ToString("0.0"))
     End Sub
 
-    Private Sub playButton_Click(sender As Object, e As EventArgs) Handles playButton.Click
-        playCheckBox.Checked = True
-        bStart_Click(sender, e)
-        Dim fps = Play(_source, pictureboxFrameView)
-        MsgBox("FPS: " + fps.ToString("0.0"))
+    Private Sub playCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles playCheckBox.CheckedChanged
+        If playCheckBox.Checked Then
+            bStart_Click(sender, e)
+            Dim fps = Play(_source, pictureboxFrameView)
+            MsgBox("FPS: " + fps.ToString("0.0"))
+        End If
     End Sub
 End Class
