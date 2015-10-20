@@ -1,4 +1,6 @@
-﻿Public Class VideoCaptureTestTool
+﻿Imports System.Threading
+
+Public Class VideoCaptureTestTool
     Private _source As IVideoCapture
     Private _id As String
 
@@ -44,6 +46,7 @@
 
     Private Sub bStop_Click(sender As Object, e As EventArgs) Handles bStop.Click
         TryThis(Sub()
+                    playCheckBox.Checked = False : Application.DoEvents()
                     _source.Close()
                 End Sub)
     End Sub
@@ -110,6 +113,32 @@
         Return fps
     End Function
 
+    Private Function Play(source As IVideoCapture, picturebox As PictureBox) As Single
+        Dim count As Integer
+        Dim sleepTime = 1000 / fpsNumericUpDown.Value
+        Dim time = Now
+        Do While playCheckBox.Checked
+            Do While source.IsWorking AndAlso source.CanCapture = False
+                Threading.Thread.Sleep(1)
+            Loop
+            If source.CanCapture Then
+                source.Capture()
+                If picturebox IsNot Nothing Then
+                    SyncLock _source.SyncObject
+                        picturebox.Image = _source.GetBitmap
+                        picturebox.Refresh()
+                        Application.DoEvents()
+                        Thread.Sleep(sleepTime)
+                    End SyncLock
+                End If
+                count += 1
+            End If
+        Loop
+        Dim secs = (Now - time).TotalSeconds
+        Dim fps = count / secs
+        Return fps
+    End Function
+
     Private Sub buttonTestFramerate_Click(sender As Object, e As EventArgs) Handles buttonTestFramerate.Click
         Dim fps = TestFrameRate(_source, 2, Nothing)
         MsgBox("FPS: " + fps.ToString("0.0"))
@@ -117,6 +146,13 @@
 
     Private Sub buttonTestFramerateWithOutput_Click(sender As Object, e As EventArgs) Handles buttonTestFramerateWithOutput.Click
         Dim fps = TestFrameRate(_source, 2, pictureboxFrameView)
+        MsgBox("FPS: " + fps.ToString("0.0"))
+    End Sub
+
+    Private Sub playButton_Click(sender As Object, e As EventArgs) Handles playButton.Click
+        playCheckBox.Checked = True
+        bStart_Click(sender, e)
+        Dim fps = Play(_source, pictureboxFrameView)
         MsgBox("FPS: " + fps.ToString("0.0"))
     End Sub
 End Class

@@ -37,7 +37,12 @@ Partial Class VideoCaptureTestTool
         Me.states = New System.Windows.Forms.ListBox()
         Me.stateTimer = New System.Windows.Forms.Timer(Me.components)
         Me.buttonTestFramerateWithOutput = New System.Windows.Forms.Button()
+        Me.playButton = New System.Windows.Forms.Button()
+        Me.playCheckBox = New System.Windows.Forms.CheckBox()
+        Me.fpsNumericUpDown = New System.Windows.Forms.NumericUpDown()
+        Me.fpsLabel = New System.Windows.Forms.Label()
         CType(Me.pictureboxFrameView, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.fpsNumericUpDown, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'pictureboxFrameView
@@ -49,7 +54,7 @@ Partial Class VideoCaptureTestTool
         Me.pictureboxFrameView.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.pictureboxFrameView.Location = New System.Drawing.Point(139, 69)
         Me.pictureboxFrameView.Name = "pictureboxFrameView"
-        Me.pictureboxFrameView.Size = New System.Drawing.Size(431, 377)
+        Me.pictureboxFrameView.Size = New System.Drawing.Size(431, 487)
         Me.pictureboxFrameView.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.pictureboxFrameView.TabIndex = 0
         Me.pictureboxFrameView.TabStop = False
@@ -159,11 +164,50 @@ Partial Class VideoCaptureTestTool
         Me.buttonTestFramerateWithOutput.Text = "Тест частоты кадров c отображением"
         Me.buttonTestFramerateWithOutput.UseVisualStyleBackColor = True
         '
+        'playButton
+        '
+        Me.playButton.Location = New System.Drawing.Point(27, 452)
+        Me.playButton.Name = "playButton"
+        Me.playButton.Size = New System.Drawing.Size(106, 47)
+        Me.playButton.TabIndex = 14
+        Me.playButton.Text = "Воспроизведение"
+        Me.playButton.UseVisualStyleBackColor = True
+        '
+        'playCheckBox
+        '
+        Me.playCheckBox.AutoSize = True
+        Me.playCheckBox.Location = New System.Drawing.Point(6, 469)
+        Me.playCheckBox.Name = "playCheckBox"
+        Me.playCheckBox.Size = New System.Drawing.Size(15, 14)
+        Me.playCheckBox.TabIndex = 15
+        Me.playCheckBox.UseVisualStyleBackColor = True
+        '
+        'fpsNumericUpDown
+        '
+        Me.fpsNumericUpDown.Location = New System.Drawing.Point(6, 505)
+        Me.fpsNumericUpDown.Name = "fpsNumericUpDown"
+        Me.fpsNumericUpDown.Size = New System.Drawing.Size(35, 20)
+        Me.fpsNumericUpDown.TabIndex = 16
+        Me.fpsNumericUpDown.Value = New Decimal(New Integer() {12, 0, 0, 0})
+        '
+        'fpsLabel
+        '
+        Me.fpsLabel.AutoSize = True
+        Me.fpsLabel.Location = New System.Drawing.Point(47, 507)
+        Me.fpsLabel.Name = "fpsLabel"
+        Me.fpsLabel.Size = New System.Drawing.Size(21, 13)
+        Me.fpsLabel.TabIndex = 17
+        Me.fpsLabel.Text = "fps"
+        '
         'VideoCaptureTestTool
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(575, 451)
+        Me.ClientSize = New System.Drawing.Size(575, 561)
+        Me.Controls.Add(Me.fpsLabel)
+        Me.Controls.Add(Me.fpsNumericUpDown)
+        Me.Controls.Add(Me.playCheckBox)
+        Me.Controls.Add(Me.playButton)
         Me.Controls.Add(Me.buttonTestFramerateWithOutput)
         Me.Controls.Add(Me.states)
         Me.Controls.Add(Me.Label2)
@@ -180,6 +224,7 @@ Partial Class VideoCaptureTestTool
         Me.Name = "VideoCaptureTestTool"
         Me.Text = "Тест видеозахвата"
         CType(Me.pictureboxFrameView, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.fpsNumericUpDown, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -197,4 +242,8 @@ Partial Class VideoCaptureTestTool
     Friend WithEvents states As System.Windows.Forms.ListBox
     Friend WithEvents stateTimer As System.Windows.Forms.Timer
     Friend WithEvents buttonTestFramerateWithOutput As System.Windows.Forms.Button
+    Friend WithEvents playButton As Button
+    Friend WithEvents playCheckBox As CheckBox
+    Friend WithEvents fpsNumericUpDown As NumericUpDown
+    Friend WithEvents fpsLabel As Label
 End Class
