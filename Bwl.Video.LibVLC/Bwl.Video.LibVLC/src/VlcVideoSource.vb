@@ -74,6 +74,14 @@ Public Class VlcVideoSource
 
     Public Sub Capture() Implements IVideoCapture.Capture
         SyncLock Me
+            If _currentFrame IsNot Nothing Then
+                Try
+                    _currentFrame.Dispose()
+                    _currentFrame = Nothing
+                Catch ex As Exception
+
+                End Try
+            End If
             _currentFrame = _player.GetBitmap
             _captureTime = Now
             _position += 1
