@@ -10,6 +10,7 @@
     Private _position As Integer
     Private _currentFrame As Bitmap
     Private _captureTime As DateTime = DateTime.MinValue
+    Private _captureLoop As TimeSpan = New TimeSpan(0)
     Private _id As String
     Private _path As String
 
@@ -39,7 +40,10 @@
             Try
                 Dim name = IO.Path.GetFileNameWithoutExtension(file)
                 Dim captureTime = New DateTime(Convert.ToInt64(name))
-                If captureTime <= _captureTime Then captureTime = Now 'Обратный ход времени не допускается!
+                If captureTime <= _captureTime Then
+                    _captureLoop += _captureTime - captureTime
+                End If
+                captureTime += _captureLoop
                 _captureTime = captureTime
             Catch ex As Exception
                 _captureTime = Now
@@ -49,8 +53,8 @@
     End Sub
 
     Public Sub Close() Implements IVideoCapture.Close
+        Restart()
         _fileList = {}
-        _position = 0
     End Sub
 
     Public Property FrameNumber As Integer Implements IVideoCapture.FrameNumber
@@ -103,12 +107,13 @@
             list.AddRange(files2)
 
             _fileList = list.ToArray
-            _position = 0
+            Restart()
         End SyncLock
     End Sub
 
     Public Sub Restart()
         _position = 0
+        _captureLoop = New TimeSpan(0)
     End Sub
 
     Public ReadOnly Property FileList As String()
