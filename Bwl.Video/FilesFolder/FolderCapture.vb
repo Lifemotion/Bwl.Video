@@ -29,6 +29,7 @@
     End Property
 
     Public Property NextFrameAfterCapture As Boolean = True
+    Private _prevFrameDuration As TimeSpan
 
     Public Sub Capture() Implements IVideoCapture.Capture
         If Not CanCapture Then Throw New Exception("No more frames. Use Open to restart.")
@@ -37,17 +38,16 @@
             _currentFrame = Bitmap.FromFile(file)
             If NextFrameAfterCapture Then _position += 1
             If Repeat And _fileList.Length <= _position Then _position = 0
-            Try
-                Dim name = IO.Path.GetFileNameWithoutExtension(file)
-                Dim captureTime = New DateTime(Convert.ToInt64(name))
-                If captureTime <= _captureTime Then
-                    _captureLoop += _captureTime - captureTime
-                End If
+
+            Dim name = IO.Path.GetFileNameWithoutExtension(file)
+            Dim captureTime = New DateTime(Convert.ToInt64(name)) + _captureLoop
+            If captureTime <= _captureTime Then
+                _captureLoop = _captureTime - captureTime + _prevFrameDuration
                 captureTime += _captureLoop
-                _captureTime = captureTime
-            Catch ex As Exception
-                _captureTime = Now
-            End Try
+            End If
+            _prevFrameDuration = captureTime - _captureTime
+            _captureTime = captureTime
+            'System.IO.File.Create(captureTime.ToString("yyyy.MM.dd HH..mm..ss.ffff"))
             RaiseEvent FrameCaptured(Me)
         End SyncLock
     End Sub
