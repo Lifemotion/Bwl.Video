@@ -94,6 +94,12 @@
     <Compile Include="TestTool\VideoWriterTestTool.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="VideoCaptureTool.designer.vb">
+      <DependentUpon>VideoCaptureTool.vb</DependentUpon>
+    </Compile>
+    <Compile Include="VideoCaptureTool.vb">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="TestTool\VideoCaptureTestTool.resx">
@@ -107,6 +113,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="TestTool\VideoWriterTestTool.resx">
       <DependentUpon>VideoWriterTestTool.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoCaptureTool.resx">
+      <DependentUpon>VideoCaptureTool.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

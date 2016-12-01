@@ -24,6 +24,7 @@ Partial Class TestApp
     Private Sub InitializeComponent()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.Button2 = New System.Windows.Forms.Button()
+        Me._btnVideoCaptureTool = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Button1
@@ -44,11 +45,21 @@ Partial Class TestApp
         Me.Button2.Text = "TestFilesFolder Writer"
         Me.Button2.UseVisualStyleBackColor = True
         '
+        '_btnVideoCaptureTool
+        '
+        Me._btnVideoCaptureTool.Location = New System.Drawing.Point(12, 70)
+        Me._btnVideoCaptureTool.Name = "_btnVideoCaptureTool"
+        Me._btnVideoCaptureTool.Size = New System.Drawing.Size(260, 23)
+        Me._btnVideoCaptureTool.TabIndex = 2
+        Me._btnVideoCaptureTool.Text = "VideoCaptureTool"
+        Me._btnVideoCaptureTool.UseVisualStyleBackColor = True
+        '
         'TestApp
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(284, 261)
+        Me.ClientSize = New System.Drawing.Size(284, 166)
+        Me.Controls.Add(Me._btnVideoCaptureTool)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.Button1)
         Me.Name = "TestApp"
@@ -58,4 +69,5 @@ Partial Class TestApp
     End Sub
     Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents _btnVideoCaptureTool As Windows.Forms.Button
 End Class

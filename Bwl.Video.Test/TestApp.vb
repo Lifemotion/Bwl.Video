@@ -15,11 +15,9 @@ Public Class TestApp
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-      
         fw.WriteFrame(New Bitmap(1024, 600))
         fw.WriteFrame(New Bitmap(1024, 600))
         fw.WriteFrame(New Bitmap(1024, 600))
         fw.WriteFrame(New Bitmap(1024, 600))
-
     End Sub
 End Class
