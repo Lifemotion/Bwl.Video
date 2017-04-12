@@ -13,6 +13,10 @@
     Private _captureLoop As TimeSpan = New TimeSpan(0)
     Private _id As String
     Private _path As String
+    Private _fileCache As New Dictionary(Of String, Bitmap)
+
+    Public Property MemoryCacheLimit As Integer = 0
+    Public Property MemoryCacheUseClone As Boolean = False
 
     Public Sub New(id As String)
         _id = id
@@ -35,7 +39,22 @@
         If Not CanCapture Then Throw New Exception("No more frames. Use Open to restart.")
         SyncLock Me
             Dim file = _fileList(_position)
-            _currentFrame = Bitmap.FromFile(file)
+            If MemoryCacheLimit > 0 Then
+                If _fileCache.ContainsKey(file) Then
+                    If MemoryCacheUseClone Then
+                        _currentFrame = New Bitmap(_fileCache(file))
+                    Else
+                        _currentFrame = _fileCache(file)
+                    End If
+                Else
+                    _currentFrame = Bitmap.FromFile(file)
+                    If _fileCache.Count < MemoryCacheLimit Then
+                        _fileCache.Add(file, _currentFrame)
+                    End If
+                End If
+            Else
+                _currentFrame = Bitmap.FromFile(file)
+            End If
             If NextFrameAfterCapture Then _position += 1
             If Repeat And _fileList.Length <= _position Then _position = 0
 

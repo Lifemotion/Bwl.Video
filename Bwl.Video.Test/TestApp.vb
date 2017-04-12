@@ -9,6 +9,8 @@ Public Class TestApp
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         Dim ff As New FolderCapture("0")
+        ff.MemoryCacheLimit = 1000
+        'ff.MemoryCacheUseClone = True
         ff.Address = "example"
         ff.Parameters = "testparam"
         VideoCaptureTestTool.Create(ff).Show()
