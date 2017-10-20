@@ -10,7 +10,6 @@
     Private _position As Integer
     Private _currentFrame As Bitmap
     Private _captureTime As DateTime = DateTime.MinValue
-    Private _captureLoop As TimeSpan = New TimeSpan(0)
     Private _id As String
     Private _path As String
     Private _fileCache As New Dictionary(Of String, Bitmap)
@@ -55,16 +54,20 @@
             Else
                 _currentFrame = Bitmap.FromFile(file)
             End If
-            If NextFrameAfterCapture Then _position += 1
-            If Repeat And _fileList.Length <= _position Then _position = 0
 
+            If NextFrameAfterCapture Then _position += 1
+            If _position >= _fileList.Length Then
+                If Repeat Then
+                    _position = 0
+                Else
+                    Throw New Exception("No available frames")
+                End If
+            End If
+
+            Dim captureTime As DateTime = New DateTime
             Try
                 Dim name = IO.Path.GetFileNameWithoutExtension(file)
-                Dim captureTime = New DateTime(Convert.ToInt64(name)) + _captureLoop
-                If captureTime <= _captureTime Then
-                    _captureLoop = _captureTime - captureTime + _prevFrameDuration
-                    captureTime += _captureLoop
-                End If
+                captureTime = New DateTime(Convert.ToInt64(name))
             Catch ex As Exception
                 _captureTime = New DateTime
             End Try
@@ -139,7 +142,6 @@
 
     Public Sub Restart()
         _position = 0
-        _captureLoop = New TimeSpan(0)
     End Sub
 
     Public ReadOnly Property FileList As String()
