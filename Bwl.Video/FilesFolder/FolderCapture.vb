@@ -67,7 +67,8 @@
             Dim captureTime As DateTime = New DateTime
             Try
                 Dim name = IO.Path.GetFileNameWithoutExtension(file)
-                captureTime = New DateTime(Convert.ToInt64(name))
+                Dim nameNumeric = New String(name.Where(Function(c) Char.IsNumber(c)).ToArray())
+                captureTime = New DateTime(Convert.ToInt64(nameNumeric))
             Catch ex As Exception
                 _captureTime = New DateTime
             End Try
