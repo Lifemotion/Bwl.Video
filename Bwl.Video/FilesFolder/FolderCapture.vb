@@ -1,4 +1,6 @@
-﻿Public Class FolderCapture
+﻿Imports System.IO
+
+Public Class FolderCapture
     Implements IVideoCapture
 
     Private Class FileEntry
@@ -8,14 +10,15 @@
 
     Private _fileList As String() = {}
     Private _position As Integer
-    Private _currentFrame As Bitmap
+    Private _currentFrame As Tuple(Of Bitmap, Byte())
     Private _captureTime As DateTime = DateTime.MinValue
     Private _id As String
     Private _path As String
-    Private _fileCache As New Dictionary(Of String, Bitmap)
+    Private _fileCache As New Dictionary(Of String, Tuple(Of Bitmap, Byte()))
 
     Public Property MemoryCacheLimit As Integer = 0
     Public Property MemoryCacheUseClone As Boolean = False
+    Public Property JpegOnlyOutput As Boolean = False
 
     Public Sub New(id As String)
         _id = id
@@ -37,22 +40,33 @@
     Public Sub Capture() Implements IVideoCapture.Capture
         If Not CanCapture Then Throw New Exception("No more frames. Use Open to restart.")
         SyncLock Me
+            Dim getFrame = Function(fileName As String) As Tuple(Of Bitmap, Byte())
+                               Dim fileData = IO.File.ReadAllBytes(fileName)
+                               Dim jpegData = If(fileData(0) = &HFF AndAlso fileData(1) = &HD8 AndAlso fileData(2) = &HFF AndAlso fileData(3) = &HE0, fileData, Nothing)
+                               Dim res As Tuple(Of Bitmap, Byte()) = Nothing
+                               If JpegOnlyOutput Then
+                                   res = New Tuple(Of Bitmap, Byte())(Nothing, jpegData)
+                               Else
+                                   res = New Tuple(Of Bitmap, Byte())(New Bitmap(New MemoryStream(fileData)), jpegData)
+                               End If
+                               Return res
+                           End Function
             Dim file = _fileList(_position)
             If MemoryCacheLimit > 0 Then
                 If _fileCache.ContainsKey(file) Then
                     If MemoryCacheUseClone Then
-                        _currentFrame = New Bitmap(_fileCache(file))
+                        _currentFrame = New Tuple(Of Bitmap, Byte())(New Bitmap(_fileCache(file).Item1), _fileCache(file).Item2.ToArray())
                     Else
                         _currentFrame = _fileCache(file)
                     End If
                 Else
-                    _currentFrame = Bitmap.FromFile(file)
+                    _currentFrame = getFrame(file)
                     If _fileCache.Count < MemoryCacheLimit Then
                         _fileCache.Add(file, _currentFrame)
                     End If
                 End If
             Else
-                _currentFrame = Bitmap.FromFile(file)
+                _currentFrame = getFrame(file)
             End If
 
             If NextFrameAfterCapture Then _position += 1
@@ -75,7 +89,7 @@
 
             _prevFrameDuration = captureTime - _captureTime
             _captureTime = captureTime
-            'System.IO.File.Create(captureTime.ToString("yyyy.MM.dd HH..mm..ss.ffff"))
+
             RaiseEvent FrameCaptured(Me)
         End SyncLock
     End Sub
@@ -99,19 +113,23 @@
     End Property
 
     Public Function GetBitmap() As Bitmap Implements IVideoCapture.GetBitmap
-        Return _currentFrame
+        Return _currentFrame.Item1
     End Function
 
     Public Function GetBitmapCopy() As Bitmap Implements IVideoCapture.GetBitmapCopy
         SyncLock Me
-            Return New Bitmap(_currentFrame)
+            Return New Bitmap(_currentFrame.Item1)
         End SyncLock
     End Function
 
     Public Function GetBitmapCopy(width As Integer, height As Integer) As Bitmap Implements IVideoCapture.GetBitmapCopy
         SyncLock Me
-            Return If(_currentFrame IsNot Nothing, New Bitmap(_currentFrame, width, height), New Bitmap(width, height, Imaging.PixelFormat.Format24bppRgb))
+            Return If(_currentFrame IsNot Nothing, New Bitmap(_currentFrame.Item1, width, height), New Bitmap(width, height, Imaging.PixelFormat.Format24bppRgb))
         End SyncLock
+    End Function
+
+    Public Function GetJpeg() As Byte()
+        Return _currentFrame.Item2
     End Function
 
     Public ReadOnly Property ID As String Implements IVideoCapture.ID
