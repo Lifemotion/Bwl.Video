@@ -42,7 +42,9 @@ Public Class FolderCapture
         SyncLock Me
             Dim getFrame = Function(fileName As String) As Tuple(Of Bitmap, Byte())
                                Dim fileData = IO.File.ReadAllBytes(fileName)
-                               Dim jpegData = If(fileData(0) = &HFF AndAlso fileData(1) = &HD8 AndAlso fileData(2) = &HFF AndAlso fileData(3) = &HE0, fileData, Nothing)
+                               Dim soiDetected = fileData(0) = &HFF AndAlso fileData(1) = &HD8
+                               Dim eoiDetected = fileData(fileData.Length - 2) = &HFF AndAlso fileData(fileData.Length - 1) = &HD9
+                               Dim jpegData = If(soiDetected AndAlso eoiDetected, fileData, Nothing)
                                Dim res As Tuple(Of Bitmap, Byte()) = Nothing
                                If JpegOnlyOutput Then
                                    res = New Tuple(Of Bitmap, Byte())(Nothing, jpegData)
